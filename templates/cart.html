@@ -1,0 +1,33 @@
+{% extends 'base.html' %}{% block content %}
+<div id="api-message">
+</div>
+<h1>Your cart</h1>
+{% if items %}
+  <div class="cart-list">
+    {% for item in items %}
+      <article class="cart-item">
+        <div>
+          <h3>{{item.product.name}}</h3>
+          <p>₹{{item.product.price|inr}} each</p>
+        </div>
+        <div class="quantity">
+          <button data-cart-id="{{item.id}}" data-quantity="{{item.quantity-1}}">−</button>
+          <span>{{item.quantity}}</span>
+          <button data-cart-id="{{item.id}}" data-quantity="{{item.quantity+1}}">+</button>
+        </div>
+        <strong>₹{{(item.product.price * item.quantity)|inr}}</strong>
+        <button class="text-button remove-cart" data-cart-id="{{item.id}}">Remove</button>
+      </article>
+    {% endfor %}
+  </div>
+  <div class="total">
+    <span>Total</span>
+    <strong>₹{{total|inr}}</strong>
+  </div>
+  <a class="button" href="{{url_for('checkout')}}">Proceed to checkout</a>
+{% else %}
+  <div class="empty card">
+    <p>Your cart is empty.</p>
+    <a class="button" href="{{url_for('index')}}">Browse products</a>
+  </div>
+{% endif %}{% endblock %}

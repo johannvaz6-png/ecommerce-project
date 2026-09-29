@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block content %}
+<section class="confirmation card">
+  <p class="eyebrow">ORDER CONFIRMED</p>
+  <h1>Thank you, {{order.customer_name}}!</h1>
+  <p>Your order <b>#{{user_order_number}}</b> was placed successfully and is currently <b>{{order.status}}</b>.</p>
+  <p class="price">₹{{order.total_amount|inr}}</p>
+  <a class="button" href="{{url_for('orders')}}">View my orders</a>
+</section>
+{% endblock %}

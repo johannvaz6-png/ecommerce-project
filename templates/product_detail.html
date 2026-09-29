@@ -1,0 +1,25 @@
+{% extends 'base.html' %}{% block content %}
+<div id="api-message">
+</div>
+<section class="detail">
+  {% if product.image %}
+    <img class="product-image" style="width:100%;height:100%;object-fit:fill" src="{{ product.image }}" alt="{{ product.name }}">
+  {% else %}
+    <div class="product-image">{{ product.category[0] }}</div>
+  {% endif %}
+  <div>
+    <p class="eyebrow">{{product.category}}</p>
+    <h1>{{product.name}}</h1>
+    <p class="description">{{product.description}}</p>
+    <p class="price">₹{{ product.price|inr }}</p>
+    <p class="stock {% if product.stock == 0 %}out{% endif %}">
+      {% if product.stock %}{{product.stock}} available{% else %}Out of stock{% endif %}
+    </p>
+    {% if current_user.is_authenticated and current_user.role == 'User' and product.stock %}
+      <button class="button add-cart" data-product="{{product.id}}">Add to cart</button>
+    {% elif not current_user.is_authenticated %}
+      <a class="button" href="{{url_for('login')}}">Log in to add to cart</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

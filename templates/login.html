@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block content %}
+<form class="auth card" method="post">
+  <h1>Welcome back</h1>
+  <label>Email<input type="email" name="email" required>
+  </label>
+  <label>Password<input type="password" name="password" required>
+  </label>
+  <button class="button">Log in</button>
+  <p>New here? <a href="{{url_for('register')}}">Create an account</a>.</p>
+  <p class="hint">Demo admin: admin@example.com / Admin@123</p>
+</form>
+{% endblock %}

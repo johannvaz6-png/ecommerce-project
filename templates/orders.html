@@ -1,0 +1,20 @@
+{% extends 'base.html' %}{% block content %}
+<h1>My orders</h1>
+{% for order in orders %}
+  <article class="order card">
+    <div>
+      <h2>Order #{{order_numbers[order.id]}}</h2>
+      <p>{{order.created_at|ist}} · <span class="badge">{{order.status}}</span>
+    </p>
+    {% for item in order.items %}
+      <p>{{item.product_name}} × {{item.quantity}}</p>
+    {% endfor %}
+  </div>
+  <strong class="price">₹{{order.total_amount|inr}}</strong>
+</article>
+{% else %}
+  <div class="empty card">
+    <p>No orders yet.</p>
+    <a class="button" href="{{url_for('index')}}">Start shopping</a>
+  </div>
+{% endfor %}{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}{% block content %}
+<p class="eyebrow">ADMINISTRATION</p>
+<h1>Dashboard</h1>
+<div class="stats">
+  <div class="card">
+    <span>Products</span>
+    <b>{{products}}</b>
+  </div>
+  <div class="card">
+    <span>Orders</span>
+    <b>{{orders}}</b>
+  </div>
+  <div class="card">
+    <span>Pending orders</span>
+    <b>{{pending}}</b>
+  </div>
+  <div class="card">
+    <span>Users</span>
+    <b>{{users}}</b>
+  </div>
+</div>
+<div class="admin-actions">
+  <a class="button" href="{{url_for('manage_products')}}">Manage products</a>
+  <a class="button secondary" href="{{url_for('manage_orders')}}">Manage orders</a>
+</div>
+{% endblock %}

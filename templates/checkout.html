@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% block content %}
+<div class="checkout">
+  <form class="card" method="post">
+    <h1>Checkout</h1>
+    <label>Full name<input name="customer_name" required value="{{current_user.username}}">
+    </label>
+    <label>Address<textarea name="address" required>
+    </textarea>
+  </label>
+  <label>Phone number<input name="phone" required>
+  </label>
+  <button class="button">Place order</button>
+</form>
+<aside class="card">
+  <h2>Order summary</h2>
+  {% for item in items %}
+    <p>{{item.product.name}} × {{item.quantity}} <span>₹{{(item.product.price*item.quantity)|inr}}</span>
+  </p>
+{% endfor %}
+<hr>
+<p class="total">
+  <b>Total</b>
+  <b>₹{{total|inr}}</b>
+</p>
+</aside>
+</div>
+{% endblock %}
